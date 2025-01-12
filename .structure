@@ -1,0 +1,20 @@
+Filemate/                               --> Root Folder
+├── .github/workflows/pypi-publish.yml
+├── file_mate/                          --> Main Package files 
+│   ├── filemate-venv/                  --> Virtual Environment
+│   ├── tests/                          --> Test files
+; │   │   ├── populate_db.py 
+; │   │   └── tabman_tests.py
+│   ├── __init__.py
+│   ├── cli.py
+│   ├── converters.py
+│   ├── info.py
+│   ├── manipulators.py
+│   ├── requirements.txt
+│   ├── utils.py
+; │   └── tab_saver.py
+├── .gitignore
+├── .structure
+├── LICENSE
+├── README.md
+└── setup.py

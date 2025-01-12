@@ -1,0 +1,24 @@
+# Environment folder
+*/filemate-venv/
+
+
+# Environment Variables
+*/.env
+
+# Python pycache
+**/.vscode/
+__pycache__/
+*/__pycache__/
+**/__pycache__/
+**/.pytest_cache/
+**/file_mate.egg-info/
+
+# Test files
+.pytest_cache
+
+# PyPI files
+**/build/
+**/dist/
+
+# Ignore workflow files
+.github/workflows/

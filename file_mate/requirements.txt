@@ -1,0 +1,7 @@
+Pillow
+python-magic
+click
+reportlab
+python-magic-bin
+setuptools
+pypdf

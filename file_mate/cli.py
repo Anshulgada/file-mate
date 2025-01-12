@@ -10,7 +10,6 @@ from file_mate.converters import (
 )
 from file_mate.info import get_file_info
 from file_mate.manipulators import resize_image, rotate_image, grayscale_image
-import os
 
 
 @click.group()

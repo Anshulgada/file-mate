@@ -2,7 +2,7 @@
 import pytest
 import os
 from file_mate import manipulators
-from PIL import Image, ImageChops
+from PIL import Image
 from reportlab.pdfgen import canvas  # Add this import
 from reportlab.lib.pagesizes import letter
 

@@ -19,6 +19,3 @@ __pycache__/
 # PyPI files
 **/build/
 **/dist/
-
-# Ignore workflow files
-.github/workflows/

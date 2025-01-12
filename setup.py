@@ -12,7 +12,7 @@ def get_long_description():
 
 setup(
     name="file-mate",
-    version="0.1.0",
+    version="0.1.1",
     description="A command-line tool for image, pdf, and other file manipulations.",
     author="Anshul Gada",
     license="MIT",
@@ -20,12 +20,13 @@ setup(
     install_requires=[
         "Pillow",
         "pypdf",
-        "python-magic",
         "click",
         "reportlab",
         "python-magic-bin",
         "setuptools",
     ],
+    long_description=get_long_description(),
+    long_description_content_type="text/markdown",
     entry_points={
         "console_scripts": [
             "file-mate=file_mate.cli:cli",

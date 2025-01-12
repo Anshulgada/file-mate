@@ -2,7 +2,7 @@
 import pytest
 import os
 from file_mate import converters
-from PIL import Image, ImageChops
+from PIL import Image
 from reportlab.pdfgen import canvas  # Add this line
 from reportlab.lib.pagesizes import letter
 from pathlib import Path
@@ -39,6 +39,7 @@ def setup_teardown():
     os.remove(TEST_IMAGE)
     os.remove(TEST_PDF)
     os.remove(TEST_IMG_PDF)
+    os.remove(TEST_MERGED_PDF) if os.path.exists(TEST_MERGED_PDF) else None
     os.rmdir(TEST_DIR)
 
     #Remove directory with content

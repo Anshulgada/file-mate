@@ -22,8 +22,9 @@ setup(
         "pypdf",
         "click",
         "reportlab",
-        "python-magic-bin",
         "setuptools",
+        "python-magic; platform_system != 'Windows'",  # For Linux/macOS
+        "python-magic-bin; platform_system == 'Windows'",  # For Windows
     ],
     long_description=get_long_description(),
     long_description_content_type="text/markdown",

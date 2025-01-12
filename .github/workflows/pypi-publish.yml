@@ -3,6 +3,7 @@
 
 name: PyPI Publish
 
+
 on:
   release:
     types: [published]
@@ -16,6 +17,7 @@ on:
 permissions:
   contents: read
   id-token: write
+
 
 jobs:
   build:
@@ -44,9 +46,14 @@ jobs:
           name: dist
           path: dist/
 
+
   test:
     name: Run Tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -55,6 +62,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+
+      - name: Install system dependencies (Linux/macOS only)
+        if: runner.os != 'Windows'
+        run: |
+          sudo apt-get update || true
+          sudo apt-get install -y libmagic1 || true
 
       - name: Install dependencies
         run: |
@@ -65,6 +78,7 @@ jobs:
       - name: Run tests
         run: |
           pytest -v -s file_mate/tests
+
 
   publish:
     name: Publish to PyPI

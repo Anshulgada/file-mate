@@ -1,6 +1,7 @@
 Pillow
 click
 reportlab
-python-magic-bin
 setuptools
 pypdf
+python-magic; platform_system != "Windows"
+python-magic-bin; platform_system == "Windows"

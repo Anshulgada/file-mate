@@ -1,0 +1,35 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+
+# Ruff
+.ruff_cache/
+
+# pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# Black
+.black_version
+
+# .github
+.github/workflows/
+
+# venv
+.venv/
+
+# Other files
+.python-version
+clean-venv.ps1
+filemate_full_summary.md
+Test.md
+PLANNING.md
+
+# Legacy workflows
+.github/workflows/3 - build-publish-legacy.yml
+.github/workflows/pypi-publish.yml

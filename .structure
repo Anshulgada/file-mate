@@ -1,0 +1,51 @@
+File-mate/                               --> Root Folder
+├── .github/workflows/
+│           ├── 1-checks-reusable.yml    --> Reusable workflow for checks (linting, type checking, etc.)
+│           ├── 2-tests-reusable.yml     --> Reusable workflow for tests (unit tests, etc.)
+│           ├── 3-build-publish-reusable.yml --> Reusable workflow for publishing to PyPI
+│           ├── main-ci-cd.yml           --> Main CI/CD workflow that uses the reusable workflows
+│           └── pypi-publish.yml         --> Old file
+├── .mypy_cache/
+├── .ruff_cache/
+├── .venv/
+├── scripts/
+│   ├── gen_docs.py                  --> Script to generate documentation
+│   └── new_command.py              --> Script to create a new command template
+├── src/
+│   └── filemate/
+│       ├── commands/
+│       │   ├── __init__.py
+│       │   ├── rename.py               --> Command to rename files
+│       │   ├──
+│       │   └──
+│       ├── core/
+│       │   ├── __init__.py
+│       │   ├── rename.py               --> Core logic for renaming files
+│       │   ├──
+│       │   └──
+│       ├── utils/
+│       │   ├── __init__.py
+│       │   ├── test_helpers.py           --> Helper functions for testing
+│       │   ├── validators.py             --> Validation functions for file names and paths
+│       │   └──
+│       ├── __init__.py
+│       ├── cli.py                      --> Main Click entry point (defines the main 'filemate' group)
+│       ├── py.typed
+│       └──
+├── tests/                              --> Test files
+│   ├── __init__.py                     --> Test module initialization
+│   ├── test_core_rename.py                  --> Tests for the rename command
+│   └── test_validators.py              --> Tests for validation functions
+├── .gitignore
+├── .pre-commit-config.yaml
+├── .python-version
+├── .structure
+├── clean-venv.ps1
+├── filemate_full_summary.md
+├── install.sh
+├── LICENSE
+├── PLANNING.md
+├── pyproject.toml
+├── README.md
+├── Test.md
+└── uv.lock

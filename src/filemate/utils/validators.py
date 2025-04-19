@@ -1,5 +1,3 @@
-# src/filemate/utils/validators.py
-
 from pathlib import Path
 
 

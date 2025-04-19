@@ -4,9 +4,8 @@ version = "0.0.1"
 description = "A command-line tool for image, pdf, and other file manipulations."
 readme = { file = "README.md", content-type = "text/markdown" }
 license = { file = "LICENSE" }
-# license = "MIT"  # You can uncomment this if you prefer the simple string format
 authors = [
-    { name = "Anshul Gada", email = "80207612+Anshulgada@users.noreply.github.com" }
+    { name = "Anshul Gada", email = "80207612+Anshulgada@users.noreply.github.com" },
 ]
 
 requires-python = ">=3.12"
@@ -30,9 +29,14 @@ dev = [
     "mypy>=1.15.0",
     "pre-commit>=4.2.0",
     "pytest>=8.3.5",
-    "ruff>=0.11.5",
-    "mypy>=1.15.0",
+    "ruff>=0.11.6",
+    "types-click>=7.1.8",
 ]
+
+[tool.pytest.ini_options]
+addopts = "-v -s"
+testpaths = ["tests"]
+pythonpath = ["src"]
 
 [build-system]
 requires = ["hatchling"]
@@ -47,7 +51,3 @@ check_untyped_defs = true
 disallow_untyped_defs = true
 ignore_missing_imports = true
 strict = true
-
-[dependency-groups]
-dev = [
-]

@@ -1,5 +1,3 @@
-# src/filemate/cli.py
-
 # Import commands here to ensure they are registered with the CLI
 from filemate.commands.rename import rename_files_in_directory
 

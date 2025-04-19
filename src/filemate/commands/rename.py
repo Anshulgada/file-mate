@@ -1,5 +1,6 @@
-import click
+import rich_click as click
 from pathlib import Path
+from typing import Optional, List
 from filemate.core.rename import rename_files, RenameConfig
 
 
@@ -10,31 +11,57 @@ from filemate.core.rename import rename_files, RenameConfig
     default="file_{i}",
     help="Rename pattern using {i} as index placeholder.",
 )
-@click.option("--ext", default=None, help="Optional file extension filter.")
+@click.option(
+    "--ext",
+    default=None,
+    help="Optional comma-separated file extensions to include (e.g., .jpg,.png or jpg,png). Common image types: jpg, png, jpeg, gif, bmp, webp.",
+)
 @click.option("--start", default=1, type=int, help="Starting index. (default = 1)")
 @click.option(
     "--output-dir",
+    "-o",
     default=None,
     type=click.Path(file_okay=False, path_type=str),
     help="Optional directory to save renamed files.",
 )
+@click.option(
+    "--dry-run",
+    is_flag=True,
+    help="Preview the files that would be renamed without making changes.",
+)
 def rename_files_in_directory(
-    folder: Path, pattern: str, ext: str, start: int, output_dir: str
+    folder: Path,
+    pattern: str,
+    ext: Optional[str],
+    start: int,
+    output_dir: Optional[str],
+    dry_run: bool,
 ) -> None:
     """
     Rename files in a directory using a given pattern.
 
-    :param folder: Directory containing files to rename.
-    :param pattern: Pattern for new file names, must include `{i}`.
-    :param ext: Optional extension filter (e.g., `.txt`).
-    :param start: Starting index to begin renaming from. (default is 1)
-    :param output_dir: Optional output directory to move renamed files into.
+    Files are processed in alphanumeric sorted order.
+
+    You can filter which files are renamed based on their extension and specify the starting
+    index number used in the renaming pattern {i}.
+
+    You can pass multiple extensions using commas (e.g., '.jpg,.png' or 'jpg,png').
+
+    Renamed files can optionally be moved to a separate output directory.
     """
+    extensions: Optional[List[str]] = None
+    if ext:
+        extensions = [
+            e.strip() if e.strip().startswith(".") else f".{e.strip()}"
+            for e in ext.split(",")
+            if e.strip()
+        ]
+
     config = RenameConfig(
         folder=Path(folder),
         pattern=pattern,
-        ext=ext,
+        extensions=extensions,
         start=start,
         output_dir=Path(output_dir) if output_dir else None,
     )
-    rename_files(config)
+    rename_files(config, dry_run=dry_run)

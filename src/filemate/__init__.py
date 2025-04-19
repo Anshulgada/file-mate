@@ -1,5 +1,3 @@
-# src/filemate/__init__.py
-
 # Dynamically load the version from pyproject.toml using importlib.metadata
 from importlib.metadata import version, PackageNotFoundError
 

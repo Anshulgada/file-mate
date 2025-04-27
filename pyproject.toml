@@ -29,18 +29,41 @@ dev = [
     "mypy>=1.15.0",
     "pre-commit>=4.2.0",
     "pytest>=8.3.5",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
     "ruff>=0.11.6",
     "types-click>=7.1.8",
 ]
 
 [tool.pytest.ini_options]
-addopts = "-v -s"
+addopts = "-v -s --cov=filemate --cov-report=term --cov-report=html:htmlcov"
 testpaths = ["tests"]
 pythonpath = ["src"]
+markers = [
+    "rename: mark test as relating to the rename command",
+    "change_ext: mark test as relating to the change-ext command",
+]
+
+[tool.coverage.run]
+source = ["filemate"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError",
+]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.sdist]
+include = ["src/*", "pyproject.toml", "LICENSE", "README.md"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/filemate"]

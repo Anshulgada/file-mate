@@ -11,8 +11,12 @@ wheels/
 # pytest
 .pytest_cache/
 
+# pytest coverage
+.coverage
+
 # mypy
 .mypy_cache/
+.dmypy.json
 
 # Black
 .black_version
@@ -26,8 +30,13 @@ wheels/
 # Other files
 .python-version
 clean-venv.ps1
+.trae
+.vscode
+scripts/
 filemate_full_summary.md
 Test.md
+docs/testing_guide.md
+Test_Console_Issue.md
 PLANNING.md
 
 # Legacy workflows

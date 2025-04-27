@@ -47,12 +47,22 @@ if command_exists pipx; then
     pipx install "$PACKAGE_NAME"
     echo -e "\n🎉 ${GREEN}${TOOL_NAME} installed successfully using pipx!${NC}"
     echo -e "💡 You should now be able to run the command: ${YELLOW}${TOOL_NAME}${NC}"
+
     # Verify installation (optional but good)
     if command_exists ${TOOL_NAME}; then
          echo -e "✅ Verification successful: '${TOOL_NAME}' command found."
     else
          echo -e "${YELLOW}⚠️ Verification failed. Please ensure pipx's bin directory is in your PATH.${NC}"
          echo -e "   Run: ${YELLOW}pipx ensurepath${NC}"
+    fi
+
+    # Enable autocomplete (Bash)
+    echo -e "\n🔧 Enabling autocomplete for FileMate..." -ForegroundColor Cyan
+    if ! grep -q "filemate_complete=source filemate" ~/.bashrc; then
+        echo 'eval "$(_FILEMATE_COMPLETE=source filemate)"' >> ~/.bashrc
+        echo -e "✅ Autocompletion added to your .bashrc!" -ForegroundColor Green
+    else
+        echo -e "⚠️ Autocompletion already exists in .bashrc!" -ForegroundColor Yellow
     fi
     exit 0
 fi

@@ -33,6 +33,7 @@ if (Command-Exists "pipx") {
     pipx install $PackageName
     Write-Host "`n🎉 $ToolName installed successfully using pipx!" -ForegroundColor Green
     Write-Host "💡 You should now be able to run the command: $($ToolName)" -ForegroundColor Yellow
+
     # Verify installation (optional but good)
     if (Command-Exists $ToolName) {
          Write-Host "✅ Verification successful: '$($ToolName)' command found." -ForegroundColor Green
@@ -40,6 +41,17 @@ if (Command-Exists "pipx") {
          Write-Host "⚠️ Verification failed. Please ensure pipx's bin directory is in your PATH." -ForegroundColor Yellow
          Write-Host "   Run: pipx ensurepath" -ForegroundColor Yellow
     }
+
+    # Enable autocomplete (PowerShell)
+    Write-Host "`n🔧 Enabling autocomplete for FileMate..." -ForegroundColor Cyan
+    $profilePath = "$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
+    if (Test-Path $profilePath) {
+        Add-Content -Path $profilePath -Value "`neval `$(filemate_complete=source filemate)`"
+        Write-Host "✅ Autocompletion added to your PowerShell profile!" -ForegroundColor Green
+    } else {
+        Write-Host "⚠️ Could not find PowerShell profile. Please manually add `eval \$(filemate_complete=source filemate)` to your PowerShell profile." -ForegroundColor Yellow
+    }
+
     exit 0
 }
 

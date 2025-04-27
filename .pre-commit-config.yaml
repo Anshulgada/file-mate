@@ -1,7 +1,7 @@
 repos:
     # ✅ uv lock file format checker
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.6.14
+    rev: 0.6.17
     hooks:
       - id: uv-lock
 
@@ -16,7 +16,7 @@ repos:
 
   # ✅ Linting
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.6
+    rev: v0.11.7
     hooks:
       - id: ruff
         args: [--config=pyproject.toml]
@@ -42,6 +42,8 @@ repos:
       - id: mypy
         args: [--config-file=pyproject.toml]
         additional_dependencies:
+          - pytest
+          - pytest-mypy-plugins
           - pydantic
           - click
           - types-click
@@ -59,11 +61,12 @@ repos:
         exclude: ^tests/
 
 
-  # ✅ (Optional) Check requirements.txt/lock files for issues
+  # # NOT WORKING
+  # # ✅ (Optional) Check requirements.txt/lock files for issues
   # # Dependency Security
   # - repo: https://github.com/pyupio/safety
-  #   rev: 2.3.5
+  #   rev: 3.1.0
   #   hooks:
-  #   - id: safety
-  #     # Needs dependencies installed; might be slow or better suited for CI
-  #     # args: ["check", "--file=requirements.txt"] # Adapt for uv.lock?
+  #     - id: safety
+  #       name: safety check for uv.lock
+  #       args: ["check", "--file=uv.lock", "--full-report"]
